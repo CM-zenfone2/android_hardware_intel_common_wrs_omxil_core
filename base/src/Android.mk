@@ -36,12 +36,18 @@ LOCAL_C_INCLUDES := \
         $(call include-path-for, frameworks-native)/media/hardware \
         $(TOP)/frameworks/native/include/media/openmax
 
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libwrs_omxil_common
+
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 LOCAL_WHOLE_STATIC_LIBRARIES := \
 	libwrs_omxil_utils \
@@ -51,4 +57,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libdl \
 	liblog
 LOCAL_CFLAGS += -Werror
+
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+
 include $(BUILD_SHARED_LIBRARY)
